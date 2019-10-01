@@ -14,7 +14,7 @@ class PetsController < ApplicationController
     @pet = Pet.create(params["pet"])
     if !params["owner"]["name"].empty?
       @owner = Owner.create(name: params["owner"]["name"])
-      @pet.owner = @owner
+      @owner.pets << @pet
     end
     redirect to "pets/#{@pet.id}"
   end
