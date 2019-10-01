@@ -24,12 +24,8 @@ class PetsController < ApplicationController
     erb :'/pets/show'
   end
 
-  patch '/pets/:id' do 
-    @owners = Owner.all
-    @pet = Pet.find(params[:id])
-    @pet.update(params["pet"])
-    redirect to "pets/#{@pet.id}"
-    
+  patch '/pets/:id' do
+   
     if !params[:pet].keys.include?("owner_id")
       params[:pet]["owner_id"] = nil
     end
