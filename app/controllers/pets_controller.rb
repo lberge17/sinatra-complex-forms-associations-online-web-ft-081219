@@ -30,8 +30,8 @@ class PetsController < ApplicationController
     @pet.update(params["pet"])
     redirect to "pets/#{@pet.id}"
     
-    if !params[:owner].keys.include?("pet_ids")
-      params[:owner]["pet_ids"] = []
+    if !params[:pet].keys.include?("owner_id")
+      params[:pet]["owner_id"] = nil
     end
     
     @owner = Owner.find(params[:id])
@@ -41,6 +41,6 @@ class PetsController < ApplicationController
       @owner.pets << Pet.create(name: params["pet"]["name"])
     end
     
-    redirect "/owners/#{@owner.id}"
+    redirect "/pets/#{@pet.id}"
   end
 end
